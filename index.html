@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock Paper Scissors</title>
+</head>
+<style>
+   * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: fantasy;
+   }
+   body{
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient( rgb(147, 202, 212),rgb(230, 175, 229)
+    );
+   }
+   .choose {
+    background-color: rgb(153, 170, 153);
+    align-items: center;
+    gap: 2em;
+    border: 3px solid whitesmoke;
+    border-radius:2em;
+    padding: 5em;
+   }
+   h1{
+    position: absolute;
+    top: 50px;
+    text-align: center;
+   }
+   #choices button{
+    padding: 1em 2em;
+    border-radius: 1em;
+    font-size: 2em;
+    border: 2px solid;
+    cursor: pointer;
+   }
+   #player,
+   #computer {
+    text-align: center;
+    font-size: 1em;
+   }
+   #result {
+    text-align: center;
+    font-size: 2em;
+    border:3px solid rgb(76, 76, 197);
+    border-radius: 1em;
+    padding: 5px 25px;
+   }
+</style>
+<body>
+    <h1>ROCK PAPER SCISSORS GAME</h1>
+<div class="choose">
+    <div id="choices">
+        <button onclick="game('Rock')">&#128400</button>
+        <button onclick="game('Paper')">&#128074</button>
+        <button onclick="game ('Scissors')">&#9996</button>
+    </div>
+    <div id="player">PLAYER:</div>
+    <div id="computer">COMPUTER:</div>
+    <div id="result">RESULT:</div>
+</div>
+</body>
+<script>
+    const playerDis = document.getElementById
+    ("player");
+    const computerDis = document.getElementById
+    ("computer");
+    const resultDis = document.getElementById
+    ("result");
+
+    const choices = ["Rock","Paper","Scissors"];
+
+    function game(player_choice) {
+
+        const computer_choice = choices[Math.floor(Math.random()*3)]
+     
+        const get_result = (player_choice,computer_choice) => 
+        player_choice === computer_choice ? "TIE":
+        (player_choice ==="Rock" && computer_choice === "Scissors") ||
+        (player_choice ==="Rock" && computer_choice === "Paper") ||
+        (player_choice ==="Paper" && computer_choice === "Scissors")
+        ? "You WIN!"
+        : "You LOSE!";
+
+        const result = get_result (player_choice,computer_choice);
+        resultDis.textContent = result;
+        playerDis.textContent = `PLAYER: ${player_choice}`;
+        computerDis.textContent = `COMPUTER: ${computer_choice}`;
+
+
+        resultDis.style.backgroundColor = 
+        result === "TIE" ? "rgb(76, 76, 197)"
+        : result === "You WIN!" ? "hsl(120, 53%, 69%)"
+        :"rgb(215, 127, 127)";
+    }
+
+</script>
+</html>
